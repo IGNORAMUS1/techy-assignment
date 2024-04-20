@@ -6,7 +6,7 @@ class Useraccount {
         this._balance = 0;
         this._transaction = [];
         this._withdrawLimit = 3;
-        this._counter = 0;   
+        this._counter = 0;   //withdrawal limit counter
     }
     get accountHolder() {
         return `${this._firstName} ${this._lastName}`;
