@@ -16,14 +16,15 @@ class Useraccount {
         return this._balance;
     };
 
-    set deposit(amount) {
+    deposit(amount) {
         this._balance += amount;
         this._transaction.push(new Transaction('deposit', amount));
     };
 
-    set withdraw(amount) {
+    withdraw(amount) {
         if (this._balance < amount || this._counter == this._withdrawLimit) {
-            this._balance -= 0; 
+            this._balance -= 0;
+            return `Not sufficient fund`; 
         }else {
             this._balance -= amount;
             this._transaction.push(new Transaction('withdraw', amount));
@@ -42,7 +43,7 @@ class Useraccount {
             return `User does not exist!`;
         } else {
             return this._balance -= amount,
-            user.deposit = amount;
+            user.deposit(amount);
         }
     }
  
@@ -75,21 +76,12 @@ const user1 = new Useraccount(3588495039, 'John', 'Doe');
 // console.log(user1.accountHolder);
 // console.log(user1.balance);
 
-user1.deposit = 1000;
+user1.deposit(1000);
 
-// user1.withdraw = 150;
-// console.log(user1.balance);
+user1.withdraw(150);
+console.log(user1.balance);
 
-// user1.withdraw = 150;
-// console.log(user1.balance);
-
-// user1.withdraw = 150;
-// console.log(user1.balance);
-
-// user1.withdraw = 150;
-// console.log(user1.balance);
-
-// console.log(user1.transactions);
+console.log(user1.transactions);
 
 const user2 = new Useraccount(3364879867, "Johnson", "Goerge")
 
