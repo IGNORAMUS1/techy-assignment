@@ -22,9 +22,12 @@ class Useraccount {
     };
 
     withdraw(amount) {
-        if (this._balance < amount || this._counter == this._withdrawLimit) {
+        if (this._balance < amount) {
             this._balance -= 0;
             return `Not sufficient fund`; 
+        }
+        if (this._counter == this._withdrawLimit){
+            return `You've reached your daily limit.`
         }else {
             this._balance -= amount;
             this._transaction.push(new Transaction('withdraw', amount));
