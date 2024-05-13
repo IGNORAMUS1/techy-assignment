@@ -21,8 +21,17 @@ mongoose.connect(DBUri)
     console.log(`Database is not connected`)
 });
 
+
+
 // Create an account
-app.post('/Createaccount/', async (req, res) => {
+/* e.g;
+{
+    "accountNumber": 3678299923,
+    "firstName": "Atinuke",
+    "lastName": "Gbolagade"
+}
+*/
+app.post('/createaccount/', async (req, res) => {
     try {
         const user = new User(req.body)
         await user.save()
@@ -58,6 +67,11 @@ app.get('/user/:id', async (req, res) => {
 });
 
 // Update an account
+/* e.g;
+{
+    "firstName": "Bimbo"
+}
+*/
 app.put('/user/:id', async (req, res) => {
     const userValidation = mongoose.Types.ObjectId.isValid(req.params.id)
     const user = await User.findById(req.params.id)
@@ -71,7 +85,14 @@ app.put('/user/:id', async (req, res) => {
     }
 })
 
+
+
 // deposit api
+/* e.g,
+{
+    "deposit": 5000
+}
+*/
 
 app.put(`/user/deposit/:id`, async (req, res) => {
     const userValidation = mongoose.Types.ObjectId.isValid(req.params.id)
@@ -97,6 +118,11 @@ app.put(`/user/deposit/:id`, async (req, res) => {
 })
 
 // withdraw api
+/* e.g,
+{
+    "withdraw": 2000
+}
+*/
 app.put(`/user/withdraw/:id`, async (req, res) => {
     const userValidation = mongoose.Types.ObjectId.isValid(req.params.id)
     const user = await User.findById(req.params.id)

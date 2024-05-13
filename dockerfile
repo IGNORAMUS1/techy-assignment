@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 4500
 
-CMD ["npm", "server"]
+CMD ["npm", "start"]
