@@ -32,12 +32,17 @@ mongoose.connect(DBUri)
 }
 */
 app.post('/createaccount/', async (req, res) => {
-    try {
-        const user = new User(req.body)
+    const user = new User(req.body)
+    
+    if (user.accountNumber === "" || !user.accountNumber) {
+        res.status(400).json({message: 'Account number field is required.'})
+    } else if(user.firstName === "" || !user.firstName) {
+        res.status(400).json({message: 'First name is required.'})
+    } else if (user.lastName === "" || !user.lastName) {
+        res.status(400).json({message: 'Last name is required.'})
+    } else {
         await user.save()
         res.status(201).json(user)
-    } catch (error) {
-        res.status(400).json({message: error.message})
     }
 });
 
