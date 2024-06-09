@@ -24,7 +24,6 @@ const Transaction = mongoose.model('Transaction', TransactionSchema)
 const userSchema = new mongoose.Schema({
     accountNumber: {
         type: Number,
-        required: true,
         unique: true
     },
     firstName: {
@@ -45,15 +44,7 @@ const userSchema = new mongoose.Schema({
     },
     withdrawLimit: {
         type: Number,
-        default: 3000
-    },
-    deposit: {
-        type: Number,
-        select: false
-    },
-    withdraw: {
-        type: Number,
-        select: false
+        default: 20000
     }
 },
     {

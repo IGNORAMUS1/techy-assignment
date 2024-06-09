@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Get Users",
+			"name": "Get All Users",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -40,35 +40,6 @@
 					"port": "4500",
 					"path": [
 						"users",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Account",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"accountNumber\": 3022765487,\r\n    \"firstName\": \"Adigun\",\r\n     \"lastName\": \"Barakat\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4500/Createaccount/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4500",
-					"path": [
-						"Createaccount",
 						""
 					]
 				}
@@ -230,6 +201,35 @@
 						"user",
 						"transactions",
 						"663dbf90fd081fcb20ff0bda"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Account",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer API",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4500/user/Transfer/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"user",
+						"Transfer",
+						""
 					]
 				}
 			},

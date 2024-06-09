@@ -34,13 +34,15 @@ mongoose.connect(DBUri)
 app.post('/createaccount/', async (req, res) => {
     const user = new User(req.body)
     
-    if (user.accountNumber === "" || !user.accountNumber) {
-        res.status(400).json({message: 'Account number field is required.'})
-    } else if(user.firstName === "" || !user.firstName) {
+    if(user.firstName === "" || !user.firstName) {
         res.status(400).json({message: 'First name is required.'})
     } else if (user.lastName === "" || !user.lastName) {
         res.status(400).json({message: 'Last name is required.'})
     } else {
+        user.accountNumber = Math.floor(Math.random() * 9999999999)
+        while(user.accountNumber.toString().length < 10){
+            user.accountNumber = Math.floor(Math.random() * 9999999999)
+        }
         await user.save()
         res.status(201).json(user)
     }
@@ -168,7 +170,7 @@ app.delete('/user/:id', async (req, res) => {
     }
 });
 
-// Get all transactions
+// Get all transactions id for a specific account
 app.get(`/user/alltransactions/:id`, async (req, res) => {
     const userValidation = mongoose.Types.ObjectId.isValid(req.params.id)
     const user = await User.findById(req.params.id)
@@ -182,7 +184,7 @@ app.get(`/user/alltransactions/:id`, async (req, res) => {
     }
 })
 
-// Get single transaction
+// Get single transaction by id
 app.get(`/transaction/:id`, async (req, res) => {
     const onetransacton = await Transaction.findById(req.params.id)
     const tranValidation =mongoose.Types.ObjectId.isValid(req.params.id)
@@ -193,6 +195,49 @@ app.get(`/transaction/:id`, async (req, res) => {
     } else {
         res.status(201).json(onetransacton)
     }
+})
+
+// Transfer from one Account to the other
+/*
+e.g 
+{
+    "transferAmount": 4000,
+    "accountNumber": 3033865487
+}
+*/
+app.put(`/user/Transfer/:id`, async (req, res) => {
+    const userValidation = mongoose.Types.ObjectId.isValid(req.params.id)
+    const from_user = await User.findById(req.params.id)
+    const to_user = await User.findOne({accountNumber: req.body.accountNumber})
+    const amount = req.body.transferAmount
+    if (!userValidation) {
+        res.status(400).json({message: `Invalid user id`})
+    } else if (!from_user) {
+        res.status(400).json({message: `Sender account does not exit!`})
+    } else if(!to_user){
+        res.status(400).json({message: `Receiver account does not exit!`})
+    } else { 
+            if(!amount) {
+             res.status(400).json({message: `Input amount to transfer!`})
+         } else if (amount > from_user.balance) {
+             res.status(400).json({message: `Not sufficient fund`})
+         } else if (amount > from_user.withdrawLimit) {
+             res.status(400).json({message: `You've reach your daily limit`})
+         } else {
+            const transfer = new Transaction({type: `Tranfer`, amount: req.body.transferAmount});
+            const receive = new Transaction({type: "Receive", amount: req.body.transferAmount});
+            return from_user.balance -= amount,
+            from_user.transactions.push(transfer._id),
+            to_user.balance += amount,
+            to_user.transactions.push(receive._id),
+            res.status(201).json({message: `You've successfully transfered ${amount} to ${to_user.firstName} ${to_user.lastName}`}),
+            transfer.save(),
+            receive.save(),
+            from_user.save(),
+            to_user.save()
+         }
+    }
+
 })
 
 // Server
