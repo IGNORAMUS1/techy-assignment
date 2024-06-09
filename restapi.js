@@ -40,11 +40,16 @@ app.post('/createaccount/', async (req, res) => {
         res.status(400).json({message: 'Last name is required.'})
     } else {
         user.accountNumber = Math.floor(Math.random() * 9999999999)
+        const accountCheck = await User.findOne({accountNumber: user.accountNumber})
+        if(accountCheck != null) {
+            user.accountNumber = Math.floor(Math.random() * 9999999999)
+        } else {
         while(user.accountNumber.toString().length < 10){
             user.accountNumber = Math.floor(Math.random() * 9999999999)
         }
         await user.save()
         res.status(201).json(user)
+        }
     }
 });
 
