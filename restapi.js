@@ -91,6 +91,8 @@ app.put('/user/:id', async (req, res) => {
         res.status(400).json({message: 'Invalid user id'})
     } else if (!user) {
         res.status(400).json({message: 'Account does not exit!'})
+    } else if(req.body.balance != null || req.body.transactions != null){
+        res.status(400).json({message: `The specified field is not meant to be updated directly!`})
     } else {
         const user = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.status(201).json(user)

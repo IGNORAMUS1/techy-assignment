@@ -32,15 +32,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4500/users/",
+					"raw": "http://localhost:4500/user/663e50e76a029d9d970d7dad",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4500",
 					"path": [
-						"users",
-						""
+						"user",
+						"663e50e76a029d9d970d7dad"
 					]
 				}
 			},
@@ -53,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"withdrawLimit\": 4550\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,7 +61,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4500/user/",
+					"raw": "http://localhost:4500/user/663e50e76a029d9d970d7dad",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -69,7 +69,7 @@
 					"port": "4500",
 					"path": [
 						"user",
-						""
+						"663e50e76a029d9d970d7dad"
 					]
 				}
 			},
@@ -82,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"balance\": 2000\r\n}",
+					"raw": "{\r\n    \"deposit\": 11000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -90,7 +90,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4500/user/deposit/663bb57e5cd731d42de9952b",
+					"raw": "http://localhost:4500/user/deposit/663e50e76a029d9d970d7dad",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -99,7 +99,7 @@
 					"path": [
 						"user",
 						"deposit",
-						"663bb57e5cd731d42de9952b"
+						"663e50e76a029d9d970d7dad"
 					]
 				}
 			},
@@ -112,7 +112,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"balance\": 2000\r\n}",
+					"raw": "{\r\n    \"withdraw\": 1000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -120,7 +120,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4500/user/deposit/663bb57e5cd731d42de9952b",
+					"raw": "http://localhost:4500/user/withdraw/6665a0811dbf1a1a458f9f5d",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -128,8 +128,8 @@
 					"port": "4500",
 					"path": [
 						"user",
-						"deposit",
-						"663bb57e5cd731d42de9952b"
+						"withdraw",
+						"6665a0811dbf1a1a458f9f5d"
 					]
 				}
 			},
@@ -150,7 +150,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4500/user/",
+					"raw": "http://localhost:4500/user/6665b1cca78e88ddb5d897a8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -158,7 +158,7 @@
 					"port": "4500",
 					"path": [
 						"user",
-						""
+						"6665b1cca78e88ddb5d897a8"
 					]
 				}
 			},
@@ -170,7 +170,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4500/user/alltransactions/663dbf90fd081fcb20ff0bda",
+					"raw": "http://localhost:4500/user/alltransactions/6665a0811dbf1a1a458f9f5d",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -179,7 +179,7 @@
 					"path": [
 						"user",
 						"alltransactions",
-						"663dbf90fd081fcb20ff0bda"
+						"6665a0811dbf1a1a458f9f5d"
 					]
 				}
 			},
@@ -191,16 +191,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4500/user/transactions/663dbf90fd081fcb20ff0bda",
+					"raw": "http://localhost:4500/transaction/6665b205a78e88ddb5d897af",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4500",
 					"path": [
-						"user",
-						"transactions",
-						"663dbf90fd081fcb20ff0bda"
+						"transaction",
+						"6665b205a78e88ddb5d897af"
 					]
 				}
 			},
@@ -210,7 +209,28 @@
 			"name": "Create Account",
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Toluwani\",\r\n    \"lastName\": \"Williams\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4500/createaccount/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"createaccount",
+						""
+					]
+				}
 			},
 			"response": []
 		},
@@ -219,8 +239,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transferAmount\": 2000,\r\n    \"accountNumber\": 7966525275\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:4500/user/Transfer/",
+					"raw": "http://localhost:4500/user/Transfer/663e50e76a029d9d970d7dad",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -229,7 +258,7 @@
 					"path": [
 						"user",
 						"Transfer",
-						""
+						"663e50e76a029d9d970d7dad"
 					]
 				}
 			},
