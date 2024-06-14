@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "75a9bb61-5479-43fc-9d0f-9f687cd841e5",
-		"name": "Restapi",
+		"_postman_id": "f93d54c6-b204-4bab-bd96-c489cc0bbd39",
+		"name": "RESTFUL.API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "34567711"
 	},
 	"item": [
 		{
-			"name": "Get All Users",
+			"name": "Get All Accounts",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -27,12 +27,12 @@
 			"response": []
 		},
 		{
-			"name": "Get single account",
+			"name": "Get Singel Account",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4500/user/663e50e76a029d9d970d7dad",
+					"raw": "http://localhost:4500/user/666c126d3466f251c4d6759e",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -40,179 +40,20 @@
 					"port": "4500",
 					"path": [
 						"user",
-						"663e50e76a029d9d970d7dad"
+						"666c126d3466f251c4d6759e"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Update Account",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"withdrawLimit\": 4550\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4500/user/663e50e76a029d9d970d7dad",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4500",
-					"path": [
-						"user",
-						"663e50e76a029d9d970d7dad"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Deposit",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"deposit\": 11000\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4500/user/deposit/663e50e76a029d9d970d7dad",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4500",
-					"path": [
-						"user",
-						"deposit",
-						"663e50e76a029d9d970d7dad"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Withdraw",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"withdraw\": 1000\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4500/user/withdraw/6665a0811dbf1a1a458f9f5d",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4500",
-					"path": [
-						"user",
-						"withdraw",
-						"6665a0811dbf1a1a458f9f5d"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Account",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:4500/user/6665b1cca78e88ddb5d897a8",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4500",
-					"path": [
-						"user",
-						"6665b1cca78e88ddb5d897a8"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "All transaction",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:4500/user/alltransactions/6665a0811dbf1a1a458f9f5d",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4500",
-					"path": [
-						"user",
-						"alltransactions",
-						"6665a0811dbf1a1a458f9f5d"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "One transaction",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:4500/transaction/6665b205a78e88ddb5d897af",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "4500",
-					"path": [
-						"transaction",
-						"6665b205a78e88ddb5d897af"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Account",
+			"name": "Create account",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Toluwani\",\r\n    \"lastName\": \"Williams\"\r\n}",
+					"raw": "{\r\n    \"firstName\": \"Bimbo\",\r\n    \"lastName\": \"Williams\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -235,13 +76,13 @@
 			"response": []
 		},
 		{
-			"name": "Transfer API",
+			"name": "Update Account",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transferAmount\": 2000,\r\n    \"accountNumber\": 7966525275\r\n}",
+					"raw": "{\r\n    \"withdrawLimit\": 100000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -249,7 +90,116 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4500/user/Transfer/663e50e76a029d9d970d7dad",
+					"raw": "http://localhost:4500/user/666c126d3466f251c4d6759e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"user",
+						"666c126d3466f251c4d6759e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deposit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"deposit\": 20000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4500/user/deposit/666c126d3466f251c4d6759e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"user",
+						"deposit",
+						"666c126d3466f251c4d6759e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Withdraw",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"withdraw\": 4000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4500/user/withdraw/666c126d3466f251c4d6759e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"user",
+						"withdraw",
+						"666c126d3466f251c4d6759e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Account",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4500/user/666c15043466f251c4d675c3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"user",
+						"666c15043466f251c4d675c3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transfer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transferAmount\": 7000,\r\n    \"accountNumber\": 5106312078\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4500/user/Transfer/666c126d3466f251c4d6759e",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -258,7 +208,48 @@
 					"path": [
 						"user",
 						"Transfer",
-						"663e50e76a029d9d970d7dad"
+						"666c126d3466f251c4d6759e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Transaction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4500/user/alltransactions/666c126d3466f251c4d6759e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"user",
+						"alltransactions",
+						"666c126d3466f251c4d6759e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One Transaction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4500/transaction/666c138d3466f251c4d675b5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"transaction",
+						"666c138d3466f251c4d675b5"
 					]
 				}
 			},
