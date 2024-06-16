@@ -33,8 +33,11 @@ mongoose.connect(DBUri)
 */
 app.post('/createaccount/', async (req, res) => {
     const user = new User(req.body)
-    
-    if(user.firstName === "" || !user.firstName) {
+    const oldAccount = await User.findOne({"lastName": req.body.lastName})
+
+    if(oldAccount.lastName == req.body.lastName){
+        res.status(400).json("An account already existed with the last name.")
+    }else if(user.firstName === "" || !user.firstName) {
         res.status(400).json({message: 'First name is required.'})
     } else if (user.lastName === "" || !user.lastName) {
         res.status(400).json({message: 'Last name is required.'})
@@ -49,7 +52,7 @@ app.post('/createaccount/', async (req, res) => {
         }
         await user.save()
         res.status(201).json(user)
-        }
+        } 
     }
 });
 
@@ -122,7 +125,7 @@ app.put(`/user/deposit/:id`, async (req, res) => {
          } else {
             const transact = new Transaction({type: `deposit`, amount: req.body.deposit});
             return user.balance += amount,
-            user.transactions.push(transact._id),
+            user.transactions.push(transact),
             res.status(201).json({message: `You've successfully deposited ${amount}`}),
             transact.save(),
             user.save()
@@ -155,7 +158,7 @@ app.put(`/user/withdraw/:id`, async (req, res) => {
          } else {
             const transact = new Transaction({type: `withdraw`, amount: req.body.withdraw});
             return user.balance -= amount,
-            user.transactions.push(transact._id),
+            user.transactions.push(transact),
             res.status(201).json({message: `You've successfully withdrawn ${amount}`}),
             transact.save(),
             user.save()
@@ -234,9 +237,9 @@ app.put(`/user/Transfer/:id`, async (req, res) => {
             const transfer = new Transaction({type: `Tranfer`, amount: req.body.transferAmount});
             const receive = new Transaction({type: "Receive", amount: req.body.transferAmount});
             return from_user.balance -= amount,
-            from_user.transactions.push(transfer._id),
+            from_user.transactions.push(transfer),
             to_user.balance += amount,
-            to_user.transactions.push(receive._id),
+            to_user.transactions.push(receive),
             res.status(201).json({message: `You've successfully transfered ${amount} to ${to_user.firstName} ${to_user.lastName}`}),
             transfer.save(),
             receive.save(),
