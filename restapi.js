@@ -33,26 +33,28 @@ mongoose.connect(DBUri)
 */
 app.post('/createaccount/', async (req, res) => {
     const user = new User(req.body)
-    const oldAccount = await User.findOne({"lastName": req.body.lastName})
+    
+    try {
 
-    if(oldAccount.lastName == req.body.lastName){
-        res.status(400).json("An account already existed with the last name.")
-    }else if(user.firstName === "" || !user.firstName) {
-        res.status(400).json({message: 'First name is required.'})
-    } else if (user.lastName === "" || !user.lastName) {
-        res.status(400).json({message: 'Last name is required.'})
-    } else {
-        user.accountNumber = Math.floor(Math.random() * 9999999999)
-        const accountCheck = await User.findOne({accountNumber: user.accountNumber})
-        if(accountCheck != null) {
-            user.accountNumber = Math.floor(Math.random() * 9999999999)
+        if(user.firstName === "" || !user.firstName) {
+            res.status(400).json({message: 'First name is required.'})
+        } else if (user.lastName === "" || !user.lastName) {
+            res.status(400).json({message: 'Last name is required.'})
         } else {
-        while(user.accountNumber.toString().length < 10){
             user.accountNumber = Math.floor(Math.random() * 9999999999)
+            const accountCheck = await User.findOne({accountNumber: user.accountNumber})
+            if(accountCheck != null) {
+                user.accountNumber = Math.floor(Math.random() * 9999999999)
+            } else {
+                while(user.accountNumber.toString().length < 10){
+                    user.accountNumber = Math.floor(Math.random() * 9999999999)
+                }
+                await user.save()
+                res.status(201).json(user)
+            } 
         }
-        await user.save()
-        res.status(201).json(user)
-        } 
+    } catch(error) {
+        res.status(409).json({message: error})
     }
 });
 
